@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `clientes`
 --
 
-CREATE TABLE `clientes` if exists (
+CREATE TABLE `clientes` (
   `nombre` varchar(15) NOT NULL,
   `pApellido` varchar(25) NOT NULL,
   `sApellido` varchar(25) NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE `clientes` if exists (
 -- Estructura de tabla para la tabla `productos`
 --
 
-CREATE TABLE `productos` if exists (
+CREATE TABLE `productos` (
   `codigo` int NOT NULL,
   `descripcion` varchar(20) NOT NULL,
   `rebaja` int NOT NULL,
@@ -68,7 +68,7 @@ INSERT INTO `productos` (`codigo`, `descripcion`, `rebaja`, `estarebajas`, `prec
 -- Estructura de tabla para la tabla `proveedores`
 --
 
-CREATE TABLE `proveedores` if exists (
+CREATE TABLE `proveedores`(
   `nombre` varchar(50) NOT NULL,
   `cif` varchar(50) NOT NULL,
   `direccion` varchar(50) NOT NULL,
