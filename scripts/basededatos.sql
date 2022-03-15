@@ -27,11 +27,11 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `clientes`
 --
 
-CREATE TABLE `clientes` (
-  `nombre` varchar(15) NOT NULL,
-  `pApellido` varchar(25) NOT NULL,
-  `sApellido` varchar(25) NOT NULL,
-  `DNI` varchar(9) NOT NULL
+CREATE TABLE clientes (
+  nombre varchar(15) NOT NULL,
+  pApellido varchar(25) NOT NULL,
+  sApellido varchar(25) NOT NULL,
+  DNI varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -40,19 +40,19 @@ CREATE TABLE `clientes` (
 -- Estructura de tabla para la tabla `productos`
 --
 
-CREATE TABLE `productos` (
-  `codigo` int NOT NULL,
-  `descripcion` varchar(20) NOT NULL,
-  `rebaja` int NOT NULL,
-  `estarebajas` int NOT NULL,
-  `precio` int NOT NULL
+CREATE TABLE productos (
+  codigo int NOT NULL,
+  descripcion varchar(20) NOT NULL,
+  rebaja int NOT NULL,
+  estarebajas int NOT NULL,
+  precio int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`codigo`, `descripcion`, `rebaja`, `estarebajas`, `precio`) VALUES
+INSERT INTO productos (`codigo`, `descripcion`, `rebaja`, `estarebajas`, `precio`) VALUES
 (70, 'luz', 50, 1, 30),
 (3, 'Gomilla', 50, 1, 20),
 (4, 'balon3', 50, 1, 3),
@@ -69,18 +69,18 @@ INSERT INTO `productos` (`codigo`, `descripcion`, `rebaja`, `estarebajas`, `prec
 --
 
 CREATE TABLE `proveedores`(
-  `nombre` varchar(50) NOT NULL,
-  `cif` varchar(50) NOT NULL,
-  `direccion` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `telefono` varchar(50) NOT NULL
+  nombre varchar(50) NOT NULL,
+  cif varchar(50) NOT NULL,
+  direccion varchar(50) NOT NULL,
+  email varchar(50) NOT NULL,
+  telefono varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `proveedores`
 --
 
-INSERT INTO `proveedores` (`nombre`, `cif`, `direccion`, `email`, `telefono`) VALUES
+INSERT INTO proveedores (`nombre`, `cif`, `direccion`, `email`, `telefono`) VALUES
 ('', '6567', 'R3R3R', '434343', ''),
 ('', 'lepflepflepl', 'elfpleplfpelf', 'fepflpelfpelfp', ''),
 ('', '709069', 'calle eresma', 'alvaro@gmail.com', ''),
