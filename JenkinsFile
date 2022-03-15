@@ -1,5 +1,5 @@
 pipeline {
-            agent any
+            agent {label 'local'}
                 stages {
                         stage('Descargamos los ficheros') {
                             steps {
@@ -12,20 +12,22 @@ pipeline {
                         stage('Empezando con docker') {
                             steps {
                                 echo 'Levantando los cotenedores...'
-                                sh 'sudo docker-compose up -d'
+                                sh 'docker-compose up -d'
                                 
                             }
                         }
                         stage('Añadiendo los ficheros de PHP') {
                             steps {
                                 echo 'pasando los ficheros PHP a la carpeta WEB para e volumen...'
-                                sh 'cp PHP/* web/ || true'
+                                sh 'rm -rf web/'
+                                sh 'mkdir web'
+                                sh 'cp -r PHP/* web/ || true'
                             }
                         }
                         stage('Añadiendo la base de datos con sus tablas') {
                             steps {
                                 echo 'Pasando sql script al contenedor de bases de datos...'
-                                sh 'docker exec -i bbddtienda sh -c "mysql -u root -p secret iaw_db < /bbddtienda/iaw_db.sql" || true'
+                                sh 'docker exec -i bbddtienda sh -c "mysql -u root -psecret iaw_db < /bbddtienda/basededatos.sql" || true'
                             }
                         }
                         stage('Instalamos dependencias') {
