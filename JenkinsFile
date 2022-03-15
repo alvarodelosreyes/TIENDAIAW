@@ -1,0 +1,49 @@
+pipeline {
+            agent any
+                stages {
+                        stage('Descargamos los ficheros') {
+                            steps {
+                                echo 'Descargando ficheros de configuracion...'
+                                sh 'rm -R .* || true'
+                                sh 'rm -R * || true'
+                                sh 'git clone https://github.com/alvarodelosreyes/TIENDAIAW.git .'
+                            }
+                        }
+                        stage('Empezando con docker') {
+                            steps {
+                                echo 'Levantando los cotenedores...'
+                                sh 'sudo docker-compose up -d'
+                                
+                            }
+                        }
+                        stage('Añadiendo los ficheros de PHP') {
+                            steps {
+                                echo 'pasando los ficheros PHP a la carpeta WEB para e volumen...'
+                                sh 'sudo cp PHP/* web/ || true'
+                            }
+                        }
+                        stage('Añadiendo la base de datos con sus tablas') {
+                            steps {
+                                echo 'Pasando sql script al contenedor de bases de datos...'
+                                sh 'sudo docker exec -i bbddtienda sh -c "mysql -u root -p secret iaw_db < /bbdd/iaw_db.sql" || true'
+                            }
+                        }
+                        stage('Instalamos dependencias') {
+                            steps {
+                                echo 'Instalando...'
+                                sh 'sudo cd web/ && composer install || true'
+                                 }
+                        }
+                }
+            post {
+                always {
+                    echo 'Ejecutando pipeline'
+                }
+                success {
+                    echo 'Ha funcionado'
+                }
+                failure {
+                    echo 'No ha funcionado'
+                }
+            }
+        }
